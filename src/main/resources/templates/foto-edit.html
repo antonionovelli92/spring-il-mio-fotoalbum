@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Modifica Foto</h1>
-    <form th:action="@{/fotoalbum/edit/{id}(id=${foto.id})}" th:object="${foto}" method="post">
+    <form th:action="@{/fotoalbum/update/{id}(id=${foto.id})}" th:object="${foto}" method="post">
         <input type="hidden" th:field="*{id}" />
         <label>Nome:</label>
         <input type="text" th:field="*{titolo}" />
@@ -25,9 +25,10 @@
         <label>Categorie:</label>
         <br/>
         <div th:each="categoria : ${categorie}">
-            <input type="checkbox" th:field="*{categorie}" th:value="${categoria}" th:text="${categoria.nome}" />
+            <input type="checkbox" th:field="*{categorie}" th:value="${categoria.id}" th:text="${categoria.nome}" />
             <br/>
         </div>
+
         <br/>
         <input type="submit" value="Salva" />
     </form>

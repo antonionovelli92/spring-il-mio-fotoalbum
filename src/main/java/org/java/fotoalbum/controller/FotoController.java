@@ -76,24 +76,27 @@ public class FotoController {
     public String editFoto(Model model, @PathVariable int id) {
         Foto foto = fotoService.findById(id).orElseThrow(() -> new IllegalArgumentException("ID foto non valido"));
         model.addAttribute("foto", foto);
+        model.addAttribute("categorie", categoriaService.findAll());
         return "foto-edit";
     }
 
     @PostMapping("/fotoalbum/update/{id}")
-    public String updateFoto(Model model, @PathVariable int id, @ModelAttribute @Valid Foto foto, BindingResult bindingResult) {
+    public String updateFoto(Model model, @PathVariable int id, @ModelAttribute @Valid Foto foto,
+                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("foto", foto);
             model.addAttribute("errors", bindingResult);
-            return "edit";
+            return "foto-edit";
         }
+
         fotoService.save(foto);
         return "redirect:/fotoalbum/" + id;
     }
 
-    @PostMapping("/fotoalbum/delete/{id}")
+
+    @GetMapping("/fotoalbum/delete/{id}")
     public String deleteFoto(@PathVariable("id") int id) {
-        Foto foto = fotoService.findById(id).orElseThrow(() -> new IllegalArgumentException("ID foto non valido"));
-        fotoService.delete(foto);
-        return "redirect:/fotoalbum";
+        fotoService.deleteById(id);
+        return "redirect:/";
     }
 }

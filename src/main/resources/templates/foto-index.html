@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,28 +8,68 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Elenco Foto</h1>
-    <ul>
-        <li th:each="foto : ${fotoList}">
-            <a th:href="@{/fotoalbum/{id}(id=${foto.id})}" th:text="${foto.titolo}"></a>
-        </li>
-    </ul>
-    <a class="btn btn-primary rounded-2 shadow" th:href="@{/fotoalbum/create}">Crea nuovo</a>
+    <!-- Header -->
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <img src="https://www.clipartmax.com/png/middle/307-3075058_two-polaroid-pictures-vector-black-and-white-polaroid-logo.png" alt="Polaroid Logo" width="40">
+                </div>
+                <div class="col">
+                    <h1 class="h3 m-0">FotoAlbum</h1>
+                </div>
+            </div>
+        </div>
+    </header>
     
-    <h1>Elenco Messaggi</h1>
-    <ul>
-        <li th:each="messaggio : ${messaggioList}">
-            <a th:href="@{/messaggi/{id}(id=${messaggio.id})}" th:text="${messaggio.email}"></a>
-        </li>
-    </ul>
-    <a class="btn btn-primary rounded-2 shadow" th:href="@{/messaggi/create}">Nuovo Messaggio</a>
+    <div class="container my-4">
+          <!-- Index Categorie -->
+    <div class="row mb-4">
+        <div class="col">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/categorie}">Categorie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/fotoalbum/create}">Nuova Foto</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+        
+        <!-- Elenco Foto -->
+        <section id="foto">
+            <h2 class="mb-3">Elenco Foto</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col" th:each="foto : ${fotoList}">
+                    <div class="card">
+                        <img th:src="${foto.url}" class="card-img-top" alt="Foto">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${foto.titolo}"></h5>
+                            <p class="card-text" th:text="${foto.descrizione}"></p>
+                            <a th:href="@{/fotoalbum/{id}(id=${foto.id})}" class="btn btn-primary">Dettagli</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bottone Crea Messaggio -->
+        <div class="my-4">
+            <a class="btn btn-success"  th:href="@{/messaggi/create}">
+                <i class="bi bi-plus"></i> Nuovo Messaggio
+            </a>
+        </div>
+        
+        <!-- Bottone Crea Categoria -->
+        <div class="my-4">
+            <a class="btn btn-success" th:href="@{/categorie/create}">
+                <i class="bi bi-plus"></i> Nuova Categoria
+            </a>
+        </div>
+    </div>
     
-    <h1>Elenco Categorie</h1>
-    <ul>
-        <li th:each="categoria : ${categoriaList}">
-            <a th:href="@{/categorie/{id}(id=${categoria.id})}" th:text="${categoria.nome}"></a>
-        </li>
-    </ul>
-    <a class="btn btn-primary rounded-2 shadow" th:href="@{/categorie/create}">Nuova Categoria</a>
+    <!-- Aggiungi il link al file JavaScript di Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
