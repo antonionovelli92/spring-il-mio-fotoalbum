@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Messaggi</title>
+    <!-- Aggiungi il link al file CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<body>
+    <h1>Dettagli Messaggio</h1>
+    <p th:text="${messaggio.email}"></p>
+    <p th:text="${messaggio.text}"></p>
+</body>
+</html>

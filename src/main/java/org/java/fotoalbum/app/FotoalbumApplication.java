@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.java.fotoalbum.auth.pojo.*;
+
+import org.java.fotoalbum.auth.service.*;
 
 @SpringBootApplication
 public class FotoalbumApplication implements CommandLineRunner {
@@ -22,6 +26,11 @@ public class FotoalbumApplication implements CommandLineRunner {
 
     @Autowired
     private MessaggioService messaggioService;
+    @Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 
     public static void main(String[] args) {
         SpringApplication.run(FotoalbumApplication.class, args);
@@ -55,5 +64,21 @@ public class FotoalbumApplication implements CommandLineRunner {
 
         messaggioService.save(m1);
         messaggioService.save(m2);
+        
+        
+        Role user = new Role("USER");
+		Role admin = new Role("ADMIN");
+		
+		roleService.save(user);
+		roleService.save(admin);
+		
+		final String userPsw = new BCryptPasswordEncoder().encode("user");
+		final String adminPsw = new BCryptPasswordEncoder().encode("admin");
+		
+		User userUser = new User("user", userPsw, user);
+		User userAdmin = new User("admin", adminPsw, admin);
+		
+		userService.save(userUser);
+		userService.save(userAdmin);
     }
 }

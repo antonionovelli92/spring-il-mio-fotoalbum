@@ -47,5 +47,9 @@ public class Categoria {
 	public void setFotos(List<Foto> fotos) {
 		this.fotos = fotos;
 	}
+	@Override
+	public String toString() {
+		return "Categoria [id=" + id + ", nome=" + nome + ", fotos=" + fotos + "]";
+	}
     
 }

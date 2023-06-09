@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fotoalbum</title>
+    <!-- Aggiungi il link al file CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Elenco Foto</h1>
+    <ul>
+        <li th:each="foto : ${fotoList}">
+            <a th:href="@{/fotoalbum/{id}(id=${foto.id})}" th:text="${foto.titolo}"></a>
+        </li>
+    </ul>
+    <a class="btn btn-primary rounded-2 shadow" th:href="@{/fotoalbum/create}">Crea nuovo</a>
+    
+    <h1>Elenco Messaggi</h1>
+    <ul>
+        <li th:each="messaggio : ${messaggioList}">
+            <a th:href="@{/messaggi/{id}(id=${messaggio.id})}" th:text="${messaggio.email}"></a>
+        </li>
+    </ul>
+    <a class="btn btn-primary rounded-2 shadow" th:href="@{/messaggi/create}">Nuovo Messaggio</a>
+    
+    <h1>Elenco Categorie</h1>
+    <ul>
+        <li th:each="categoria : ${categoriaList}">
+            <a th:href="@{/categorie/{id}(id=${categoria.id})}" th:text="${categoria.nome}"></a>
+        </li>
+    </ul>
+    <a class="btn btn-primary rounded-2 shadow" th:href="@{/categorie/create}">Nuova Categoria</a>
+</body>
+</html>

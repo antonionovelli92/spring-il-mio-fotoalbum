@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fotoalbum</title>
+    <!-- Aggiungi il link al file CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Modifica Foto</h1>
+    <form th:action="@{/fotoalbum/edit/{id}(id=${foto.id})}" th:object="${foto}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label>Nome:</label>
+        <input type="text" th:field="*{titolo}" />
+        <br/>
+        <label>Descrizione:</label>
+        <input type="text" th:field="*{descrizione}" />
+        <br/>
+        <label>URL:</label>
+        <input type="text" th:field="*{url}" />
+        <br/>
+        <label>Visibile:</label>
+        <input type="checkbox" th:field="*{visibile}" />
+        <br/>
+        <label>Categorie:</label>
+        <br/>
+        <div th:each="categoria : ${categorie}">
+            <input type="checkbox" th:field="*{categorie}" th:value="${categoria}" th:text="${categoria.nome}" />
+            <br/>
+        </div>
+        <br/>
+        <input type="submit" value="Salva" />
+    </form>
+</body>
+</html>

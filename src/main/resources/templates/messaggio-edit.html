@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Messaggi</title>
+    <!-- Aggiungi il link al file CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Modifica Messaggio</h1>
+    <form th:action="@{/messaggi/update/{id}(id=${messaggio.id})}" th:object="${messaggio}" method="post">
+        <label>Titolo:</label>
+        <input type="text" th:field="*{email}" />
+        <br/>
+        <label>Testo:</label>
+        <input type="text" th:field="*{text}" />
+        <br/>
+        <input type="submit" value="Salva" />
+    </form>
+</body>
+</html>

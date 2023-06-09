@@ -32,9 +32,18 @@ public class FotoService {
         return fotoRepo.findById(id);
     }
 
-//    public List<Foto> findByCategoria(String categoria) {
-//        return fotoRepo.findByCategoriaNome(categoria);
-//    }
+	public List<Foto> findByTitoloContaining(String titolo){
+		
+		return fotoRepo.findByTitoloContaining(titolo);
+		
+	}
+	
+
+	public void deleteById(int id) {
+		
+		fotoRepo.deleteById(id);
+		
+	}
 
     public void delete(Foto foto) {
         fotoRepo.delete(foto);

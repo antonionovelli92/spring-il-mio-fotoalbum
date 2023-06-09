@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Messaggi</title>
+    <!-- Aggiungi il link al file CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<body>
+    <h1>Elenco Messaggi</h1>
+    <ul>
+        <li th:each="messaggio : ${messaggioList}">
+            <a th:href="@{/messaggi/{id}(id=${messaggio.id})}" th:text="${messaggio.email}"></a>
+        </li>
+    </ul>
+     <a class="btn btn-danger rounded-2 shadow" th:href="@{/}">HOME</a>
+</body>
+</html>
