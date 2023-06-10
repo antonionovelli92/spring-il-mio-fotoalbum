@@ -48,9 +48,9 @@ public class FotoalbumApplication implements CommandLineRunner {
         categoriaService.save(c3);
 
         // Creazione di foto
-        Foto foto1 = new Foto("Tramonto", "Bellissimo tramonto sulla spiaggia", "https://example.com/foto/tramonto.jpg", true, c1);
-        Foto foto2 = new Foto("Montagne", "Panorama mozzafiato sulle montagne", "https://example.com/foto/montagne.jpg", true, c2);
-        Foto foto3 = new Foto("Pizza", "Deliziosa pizza margherita", "https://example.com/foto/pizza.jpg", true, c3);
+        Foto foto1 = new Foto("Tramonto", "Bellissimo tramonto sulla spiaggia", "https://www.donnad.it/sites/default/files/styles/r_visual_d/public/201848/frasi-tramonto.jpg?itok=dj3BppJp", true, c1);
+        Foto foto2 = new Foto("Montagne", "Panorama mozzafiato sulle montagne", "https://travel.thewom.it/content/uploads/sites/4/2022/09/montagne-italiane-704x528.jpeg", true, c2);
+        Foto foto3 = new Foto("Pizza", "Deliziosa pizza margherita", "https://www.smeg.com/binaries/content/gallery/smeg-italy/recipes/ricetta_pizza_napoletana_smeg.jpg/ricetta_pizza_napoletana_smeg.jpg/brx%3ApostcardDeskLarge", true, c3);
 
        
 

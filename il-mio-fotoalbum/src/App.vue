@@ -1,30 +1,34 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/contact">Contattaci</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
+<script>
+import { RouterLink, RouterView } from 'vue-router';
+
+export default {
+  name: 'App',
+  components: {
+    RouterLink,
+    RouterView
+  }
+};
+</script>
+
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* Stili specifici per l'applicazione */
+nav {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-bottom: 20px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+nav a {
+  margin-right: 10px;
 }
 </style>

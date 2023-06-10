@@ -1,7 +1,9 @@
 package org.java.fotoalbum.controller.api;
 
 import org.java.fotoalbum.pojo.Foto;
+import org.java.fotoalbum.pojo.Messaggio;
 import org.java.fotoalbum.service.FotoService;
+import org.java.fotoalbum.service.MessaggioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ public class FotoalbumApiController {
 	
 	@Autowired
 	private FotoService fotoService;
+	@Autowired
+	private MessaggioService messaggioService;
 	
 	@GetMapping("/hello")
 	public ResponseEntity<String> hello(){
@@ -78,4 +82,25 @@ public class FotoalbumApiController {
 		fotoService.delete(foto);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+	
+	
+	@PostMapping("/messaggi")
+	public ResponseEntity<Void> inviaMessaggio(@RequestBody Messaggio messaggio) {
+	    if (messaggio.getEmail() != null && messaggio.getText() != null) {
+	        try {
+	            messaggioService.save(messaggio);
+	            return new ResponseEntity<>(HttpStatus.OK);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    } else {
+	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	    }
+	}
+
+
 }
+	
+	
+
