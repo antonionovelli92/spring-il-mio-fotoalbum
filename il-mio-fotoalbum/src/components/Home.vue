@@ -1,29 +1,10 @@
-<template>
-  <div>
-    <h1>Homepage Pubblica</h1>
-    <div>
-      <label for="filter">Filtra per titolo:</label>
-      <input type="text" id="filter" v-model="filterText" />
-    </div>
-    <div v-if="loading">Caricamento...</div>
-    <div v-else>
-      <div v-for="foto in filteredFotoList" :key="foto.id" class="card">
-        <img :src="foto.url" :alt="foto.titolo" class="card-img-top" />
-        <div class="card-body">
-          <h2 class="card-title">{{ foto.titolo }}</h2>
-          <p class="card-text">{{ foto.descrizione }}</p>
-        </div>
-      </div>
-    </div>
-    <router-link to="/contact" class="btn btn-primary">Contattaci</router-link>
-  </div>
-</template>
 
 <script>
+import Header from './Header.vue';
 import axios from 'axios';
-
 export default {
   name: 'Home',
+  components: { Header },
   data() {
     return {
       fotoList: [],
@@ -60,54 +41,59 @@ export default {
   }
 };
 </script>
+<template>
+  <div>
+    <div class="container">
+      <h1>FotoAlbum</h1>
+      <div class="filter-container">
+        <label for="filter">Filtra per titolo: </label>
+        <input class="mx-2" type="text" id="filter" v-model="filterText" />
+      </div>
+      <div v-if="loading">Caricamento...</div>
+      <div v-else>
+        <div class="card-container d-flex justify-content-center">
+          <div v-for="foto in filteredFotoList" :key="foto.id" class="card">
+            <img :src="foto.url" :alt="foto.titolo" class="card-img-top" />
+            <div class="card-body">
+              <h2 class="card-title">{{ foto.titolo }}</h2>
+              <p class="card-text">{{ foto.descrizione }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 
 <style scoped>
-/* Stili specifici per il componente Home */
+.filter-container {
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .card {
   width: 300px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .card-img-top {
   width: 100%;
   height: 200px;
   object-fit: cover;
-}
-
-.btn {
-  display: inline-block;
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
-
-textarea {
-  height: 150px;
 }
 </style>
